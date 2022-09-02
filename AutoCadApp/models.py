@@ -8,7 +8,10 @@ class Tutorial(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=300, null=True)
     time = models.IntegerField()
-    video = EmbedVideoField()
+    video = EmbedVideoField(null=True)
+
+    def __str__(self):
+        return self.title
 
 
 class AppUser(models.Model):

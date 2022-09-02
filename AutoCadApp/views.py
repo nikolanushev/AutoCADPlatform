@@ -1,17 +1,21 @@
 import datetime
 
 from django.shortcuts import render
-from .models import Tutorial
+from .models import Tutorial, AppUser
 # Create your views here.
 
 
 def dashboard(request):
-    context = {"date": datetime.datetime.now()}
+    tutorials = Tutorial.objects.all()[:3]
+    context = {"date": datetime.datetime.now(), "tutorials": tutorials}
     return render(request, 'dashboard.html', context=context)
 
 
 def lectures(request):
-    return render(request, 'lectures.html')
+    tutorials = Tutorial.objects.all()
+    #user = AppUser.objects.filter(username=request.user.username).all()
+    context = {'tutorials': tutorials}
+    return render(request, 'lectures.html', context)
 
 
 def exams(request):
@@ -20,6 +24,7 @@ def exams(request):
 
 def projects(request):
     return render(request, 'projects.html')
+
 
 def profile(request):
     return render(request, 'profile.html')
