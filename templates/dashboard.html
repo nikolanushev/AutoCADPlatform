@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            background-color: #fbfbfb;
+        }
+
+        @media (min-width: 991.98px) {
+            main {
+                padding-left: 50px;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 58px 0 0; /* Height of navbar */
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+            width: 240px;
+            z-index: 600;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        .sidebar .active {
+            border-radius: 5px;
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+        }
+
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: 0.5rem;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        }
+
+        .cards {
+            float: left;
+            width: 25%;
+            padding: 0 10px;
+            margin-right: 10px;
+        }
+        .inner-student-info{
+            float: left;
+            width: 31%;
+            padding: 0 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .student-photo{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .student-photo-another{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span></a>
+                    <a href="{% url 'lectures' %}" class="list-group-item list-group-item-action py-2 ripple "><i class="fas fa-chart-area fa-fw me-3"></i><span>Lectures</span></a>
+                    <a href="{% url 'projects' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Projects</span></a>
+                    <a href="{% url 'exams' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Exams</span></a>
+                </div>
+            </div>
+        </nav>
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="#"><p class="mx-4">AutoCAD learning</p></a>
+                <!-- Search form -->
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <input autocomplete="off" type="search" class="form-control rounded" placeholder='Search...' style="min-width: 225px"/>
+                    <span class="input-group-text border-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </span>
+                </form>
+
+                <ul class="navbar-nav ms-auto d-flex flex-row">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown mr-2">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Johny Varga</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="flag flag-united-kingdom"></i>English<i class="fa fa-check text-success ms-2"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-united-kingdom"></i>English<i class="fa fa-check text-success ms-2"></i></a></li>
+                            <li><hr class="dropdown-divider"/></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-macedonia"></i>Македонски</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-germany"></i>Deutsch</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-france"></i>Français</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-spain"></i>Español</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-russia"></i>Русский</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="flag flag-portugal"></i>Português</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+    </header>
+
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            <div class="row">
+                <h1>Good afternoon, Johny</h1>
+                <div class="col-md-10"><p>Here's what's going on with your learning progress</p></div>
+                <div class="col-md-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
+            </div>
+
+            <div class="row mt-4" id="cards">
+                <div class="cards" style="width: 20rem;">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-header" style="background-color: white">
+                            <b>Useful Links</b>
+                            <p class="card-text" style="float: right"><small>View All</small></p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <a href="https://academy.archistar.ai/30-great-autocad-secrets-you-didnt-know">30 Great AutoCAD Secrets You Should Know</a>
+                            <a href="https://autocadtips1.com/">AutoCAD Helpful Tips For Everyday Users</a><br>
+                            <a href="https://knowledge.autodesk.com/support/autocad/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/AutoCAD-GettingStarted/files/GUID-2AA12FC5-FBB2-4ABE-9024-90D41FEB1AC3-htm.html">The Hitchhiker's Guide to AutoCAD</a>
+                            <a href="https://interestingengineering.com/innovation/top-50-autocad-tricks-shortcuts-need-know">Top 50 AutoCAD Shortcuts You Need to Know</a>
+                            <a href="https://academyclass.com/blog/tips-for-saving-time-in-autocad-blog-academy-class/">Time Saving Tricks for AutoCAD</a>
+                            <a href="https://www.thesourcecad.com/six-tips-to-make-you-more-productive-with-autocad/">Six tips to make you more productive with AutoCAD</a>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards" style="width: 40rem;">
+                    <div class="card" style="width: 40rem;">
+                        <div class="card-header" style="background-color: white">
+                            <b>Top Students</b>
+                            <p class="card-text" style="float: right"><small>View All</small></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="inner-student-info">
+                                <img class="student-photo-another mt-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ZhGWD-YK6QpW_JcKROtI8G2-VY-KyhIVOA&usqp=CAU"><br>
+                                <div class="mt-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                </div>
+                                <p class="mt-2"><b>Evan Raymond</b></p>
+                                <p>Partner</p>
+                            </div>
+                            <div class="inner-student-info">
+                                <img class="student-photo-another mt-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjgzOoeWAe9w4YTYMye3LNwVWU2QVptuu07w&usqp=CAU">
+                                <div class="mt-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                </div>
+                                <p class="mt-2"><b>Elsa Hammingway</b></p>
+                                <p>Contributor</p>
+                            </div>
+                            <div class="inner-student-info">
+                                <img class="student-photo-another mt-2" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80">
+                                <div class="mt-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                </div>
+                                <p class="mt-2"><b>Tudor Peterson</b></p>
+                                <p>Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards" style="width: 20rem;">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-header" style="background-color: white">
+                            <b>Most Active Students</b>
+                            <p class="card-text" style="float: right"><small>View All</small></p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><img class="student-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmIh7V-Sq7K48WnUqtu18enb2Mnm_3fwnDJg&usqp=CAU"> Abel Osborne</p>
+                            <p class="card-text"><img class="student-photo" src="https://www.famousbirthdays.com/faces/darkest-man-image.jpg"> Evan Hooper</p>
+                            <p class="card-text"><img class="student-photo" src="https://flyingcdn-942385.b-cdn.net/wp-content/uploads/2018/03/Awesome-Profile-Pictures-for-Guys-look-away2.jpg"> Etienne Traynor</p>
+                            <p class="card-text"><img class="student-photo" src="https://i0.wp.com/smsforwishes.com/wp-content/uploads/2022/05/105274370_103709461393684_681293867908537804_n.jpeg?resize=700%2C700&ssl=1"> Erica Shahensee</p>
+                            <p class="card-text"><img class="student-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3KEUuZIpDN8zO0Eg8irlVOr6p8KVnAuORpQ&usqp=CAU"> Kristi George </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-11">
+                    <h3>Latest Lectures</h3>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'lectures' %}"><small>View All</small></a>
+                </div><hr>
+            </div>
+        </div>
+
+
+    </main>
+    <!--Main layout-->
+</body>
+</html>
