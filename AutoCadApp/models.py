@@ -38,10 +38,10 @@ class AppUser(models.Model):
 class Test(models.Model):
     title = models.CharField(max_length=20)
     question = models.CharField(max_length=100)
-    optionA = models.CharField(max_length=40, null=True)
-    optionB = models.CharField(max_length=40, null=True)
-    optionC = models.CharField(max_length=40, null=True)
-    answer = models.CharField(max_length=40, null=True)
+    optionA = models.CharField(max_length=200, null=True)
+    optionB = models.CharField(max_length=200, null=True)
+    optionC = models.CharField(max_length=200, null=True)
+    answer = models.CharField(max_length=200, null=True)
     tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
 
     def __str__(self):

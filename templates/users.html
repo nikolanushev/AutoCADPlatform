@@ -141,7 +141,7 @@
                             <img src="{{ MEDIA_URL }}{{ u.photo.url }}" class="card-img-top student-photo">
                         </div>
                         <div class="col-md-11 mt-2">
-                            <h5 class="card-title">{{ u.first_name }} {{ u.last_name }}</h5>
+                            <h5 class="card-title">{{ u.first_name }} {{ u.last_name }} ({{ u.user.username }})</h5>
                         </div>
                     </div>
                 {% endfor %}

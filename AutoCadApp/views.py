@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 def dashboard(request):
-    usrs = AppUser.objects.all()[2:6]
+    usrs = AppUser.objects.all()[5:9]
     links = Link.objects.all()[:5]
     tutorials = Tutorial.objects.all()[:3]
     hints = Hint.objects.all()[2:5]
@@ -41,17 +41,24 @@ def projects(request):
 
 
 def project1(request):
-    questions = Test.objects.all()
+    questions = Test.objects.all()[:5]
     user = AppUser.objects.filter(user=request.user).get()
     context = {'questions': questions, 'user': user}
     return render(request, 'project1.html', context)
 
 
 def project2(request):
-    questions = Test.objects.all()
+    questions = Test.objects.all()[5:10]
     user = AppUser.objects.filter(user=request.user).get()
     context = {'questions': questions, 'user': user}
     return render(request, 'project2.html', context)
+
+
+def exam(request):
+    questions = Test.objects.all()[4:9]
+    user = AppUser.objects.filter(user=request.user).get()
+    context = {'questions': questions, 'user': user}
+    return render(request, 'exam.html', context)
 
 
 def add_project(request):
@@ -70,6 +77,8 @@ def add_project(request):
 
 def exams(request):
     user = AppUser.objects.filter(user=request.user).get()
+    lins = Link.objects.all()[3:6]
+    hints = Hint.objects.all()[:3]
     if request.method == 'POST':
         print(request.POST)
         questions = Test.objects.all()
@@ -89,11 +98,11 @@ def exams(request):
                 wrong += 1
         percent = score / (total * 10) * 100
         context = {'score': score, 'time': request.POST.get('timer'), 'correct': correct, 'wrong': wrong,
-                   'percent': percent, 'total': total, 'user': user}
+                   'percent': percent, 'total': total, 'user': user, 'links': lins, 'hints': hints}
         return render(request, 'outcome.html', context)
     else:
         qs = Test.objects.all()
-        context = {'questions': qs, 'user': user}
+        context = {'questions': qs, 'user': user, 'links': lins, 'hints': hints}
         return render(request, 'exams.html', context)
 
 
