@@ -30,8 +30,6 @@
             z-index: 600;
         }
 
-
-
         @media (max-width: 991.98px) {
             .sidebar {
                 width: 100%;
@@ -49,6 +47,7 @@
             padding: 0 10px;
             margin-right: 10px;
         }
+
         .inner-student-info{
             float: left;
             width: 31%;
@@ -135,7 +134,11 @@
     <main style="margin-top: 58px;">
         <div class="container pt-4">
             <div class="row">
-                <h1>Good afternoon, Johny</h1>
+                <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a>
+                </p>
+            </div>
+            <div class="row">
+                <h1>Hello, {{ user.first_name }}</h1>
                 <div class="col-md-10"><p>Here's what's going on with your learning progress</p></div>
                 <div class="col-md-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
             </div>
@@ -145,17 +148,12 @@
                     <div class="card" style="width: 20rem;">
                         <div class="card-header" style="background-color: white">
                             <b>Useful Links</b>
-                            <p class="card-text" style="float: right"><small>View All</small></p>
+                            <p class="card-text" style="float: right"><small><a href="{% url 'links' %}">View All</a></small></p>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <a href="https://academy.archistar.ai/30-great-autocad-secrets-you-didnt-know">30 Great AutoCAD Secrets You Should Know</a>
-                            <a href="https://autocadtips1.com/">AutoCAD Helpful Tips For Everyday Users</a><br>
-                            <a href="https://knowledge.autodesk.com/support/autocad/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/AutoCAD-GettingStarted/files/GUID-2AA12FC5-FBB2-4ABE-9024-90D41FEB1AC3-htm.html">The Hitchhiker's Guide to AutoCAD</a>
-                            <a href="https://interestingengineering.com/innovation/top-50-autocad-tricks-shortcuts-need-know">Top 50 AutoCAD Shortcuts You Need to Know</a>
-                            <a href="https://academyclass.com/blog/tips-for-saving-time-in-autocad-blog-academy-class/">Time Saving Tricks for AutoCAD</a>
-                            <a href="https://www.thesourcecad.com/six-tips-to-make-you-more-productive-with-autocad/">Six tips to make you more productive with AutoCAD</a>
-                            <p></p>
+                            {% for l in links %}
+                                <a href="{{ l.url }}">{{ l.title }}</a><br>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -164,7 +162,7 @@
                     <div class="card" style="width: 40rem;">
                         <div class="card-header" style="background-color: white">
                             <b>Top Students</b>
-                            <p class="card-text" style="float: right"><small>View All</small></p>
+                            <p class="card-text" style="float: right"><small><a href="{% url 'users_list' %}">View All</a></small></p>
                         </div>
                         <div class="card-body">
                             <div class="inner-student-info">
@@ -232,15 +230,13 @@
                     <div class="card" style="width: 20rem;">
                         <div class="card-header" style="background-color: white">
                             <b>Most Active Students</b>
-                            <p class="card-text" style="float: right"><small>View All</small></p>
+                            <p class="card-text" style="float: right"><small><a href="{% url 'users_list' %}">View All</a></small></p>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text"><img class="student-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmIh7V-Sq7K48WnUqtu18enb2Mnm_3fwnDJg&usqp=CAU"> Abel Osborne</p>
-                            <p class="card-text"><img class="student-photo" src="https://www.famousbirthdays.com/faces/darkest-man-image.jpg"> Evan Hooper</p>
-                            <p class="card-text"><img class="student-photo" src="https://flyingcdn-942385.b-cdn.net/wp-content/uploads/2018/03/Awesome-Profile-Pictures-for-Guys-look-away2.jpg"> Etienne Traynor</p>
-                            <p class="card-text"><img class="student-photo" src="https://i0.wp.com/smsforwishes.com/wp-content/uploads/2022/05/105274370_103709461393684_681293867908537804_n.jpeg?resize=700%2C700&ssl=1"> Erica Shahensee</p>
-                            <p class="card-text"><img class="student-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3KEUuZIpDN8zO0Eg8irlVOr6p8KVnAuORpQ&usqp=CAU"> Kristi George </p>
-                        </div>
+                        {% for u in users %}
+                            <div class="card-body mt-0">
+                                <p class="card-text"><img class="student-photo" src="{{ MEDIA_URL}}{{ u.photo.url }}"> {{ u.first_name }} {{ u.last_name }}</p>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -263,6 +259,30 @@
                             </div>
                             <div class="card-body mt-1">
                                 <h5 class="card-title">{{ t.title }}</h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h3>Some useful hints</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{% url 'hints' %}"><small>View All</small></a>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row mt-2">
+                    {% for h in hints %}
+                        <div class=" mx-3" style="width: 24rem;">
+                            <div class="card-img-top">
+                                {% video h.video '376 x 190' %}
+                            </div>
+                            <div class="card-body mt-1">
+                                <h5 class="card-title">{{ h.title }}</h5>
                             </div>
                         </div>
                     {% endfor %}

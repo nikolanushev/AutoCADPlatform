@@ -1,3 +1,5 @@
+{% load static %}
+{% load embed_video_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,14 +46,6 @@
             box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
         }
 
-        .sidebar-sticky {
-            position: relative;
-            top: 0;
-            height: calc(100vh - 48px);
-            padding-top: 0.5rem;
-            overflow-x: hidden;
-            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        }
     </style>
 
 </head>
@@ -125,12 +119,83 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-md-2">
-                    <img class="rounded-circle article-img" src="{{ MEDIA_URL }}{{ user.photo }}">
+                    <img class="rounded-circle article-img" src="{{ MEDIA_URL }}{{ user.photo.url }}"
+                         style="width: 210px; height: 210px">
                 </div>
-                <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-
+                <div class="col-md-5 mx-4 mt-4">
+                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p>Email: {{ user.user.email }}</p>
+                    <p>Join Date: {{ user.user.date_joined }}</p>
+                    <p>Phone number: {{ user.phone_number }}</p>
+                </div>
+                <div class="col-md-4 mt-5" style="text-align: right">
+                    <p>You got this! Keep up!</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 48%;" aria-valuenow="48"
+                             aria-valuemin="0" aria-valuemax="100">48%
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-4">
             </div>
 
+            <div class="row mt-4">
+                <h3>Project Assignments</h3>
+                <hr>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Points</th>
+                            <th scope="col">Grade</th>
+                            <th scope="col">Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Project Assignment 1</th>
+                            <td>/</td>
+                            <td>/</td>
+                            <td>/</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Project Assignment 2</th>
+                            <td>/</td>
+                            <td>/</td>
+                            <td>/</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td colspan="3"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row mt-4">
+                <h3>Certificate</h3>
+                <hr>
+                <p>Sorry you have to complete the project assignments first.. :)</p>
+            </div>
+
+            <div class="row mt-5">
+                <div class="row">
+                    <p>Not ready for the project assignments? Don't worry, we got you. Here are some of the tutorials in the course, you can always lean on them. Want to see them all? Got to the tutorials section or <a href="{% url 'lectures' %}">click here</a></p>
+                </div>
+                <div class="row mt-2">
+                    {% for t in tutorials %}
+                        <div class=" mx-3" style="width: 24rem;">
+                            <div class="card-img-top">
+                                {% video t.video '376 x 190' %}
+                            </div>
+                            <div class="card-body mt-1">
+                                <h5 class="card-title">{{ t.title }}</h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </main>
     <!--Main layout-->

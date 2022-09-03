@@ -15,16 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from AutoCadApp.views import dashboard, lectures, projects, exams, profile
+from AutoCadApp.views import dashboard, lectures, projects, exams, profile, hints, project1, project2, add_project, \
+    users_list, links
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dashboard/', dashboard, name="dashboard"),
-    path('tutorials/', lectures, name="lectures"),
-    path('projects/', projects, name="projects"),
-    path('tests/', exams, name="exams"),
-    path('profile/', profile, name="profile"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('dashboard/', dashboard, name="dashboard"),
+                  path('tutorials/', lectures, name="lectures"),
+                  path('project1/', project1, name="project1"),
+                  path('project2/', project2, name="project2"),
+                  path('projects/', projects, name="projects"),
+                  path('addProject/', add_project, name="add_project"),
+                  path('tests/', exams, name="exams"),
+                  path('profile/', profile, name="profile"),
+                  path('hints/', hints, name="hints"),
+                  path('users/', users_list, name="users_list"),
+                  path('links/', links, name="links"),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

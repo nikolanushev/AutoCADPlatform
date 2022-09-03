@@ -1,3 +1,5 @@
+{% load static %}
+{% load embed_video_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,15 +44,6 @@
         .sidebar .active {
             border-radius: 5px;
             box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-        }
-
-        .sidebar-sticky {
-            position: relative;
-            top: 0;
-            height: calc(100vh - 48px);
-            padding-top: 0.5rem;
-            overflow-x: hidden;
-            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         }
     </style>
 
@@ -123,7 +116,55 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <h1>Hello to the projects</h1>
+
+            <div class="row">
+                <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'projects' %}">Projects</a>
+                </p>
+            </div>
+
+            <div class="row">
+                <h3>Ready to play with us? </h3>
+                <p>Let's get you in the mood. :)</p>
+                <hr>
+            </div>
+            <div class="row mt-5">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5>...Or maybe you want to check out some useful hints and tricks?</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{% url 'hints' %}"><small>View All</small></a>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row mt-2">
+                    {% for h in hints %}
+                        <div class=" mx-3 mt-1" style="width: 24rem;">
+                            <div class="card-img-top">
+                                {% video h.video '376 x 190' %}
+                            </div>
+                            <div class="card-body mt-1">
+                                <h5 class="card-title">{{ h.title }}</h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row mt-5">
+                <h6>A short notice on the project assignments:</h6>
+                <p> - You take the assignment whenever you feel ready, there is no pressure about the time,
+                    but it has to be submitted 5 days after it was initially opened. <br>
+                    - You can exit it, go back to some of the other sections, etc, it saves your progress and what you have written so far.
+                    But once you hit the submit button you won't be able to make changes.
+                </p>
+                <div class="row mt-2" style="text-align: center">
+                    <h5>You think you're ready to start the assignments?</h5>
+                    <p>Let's do this together.</p>
+                    <a href="{% url 'project1' %}">Project assignment 1</a>
+                    <a href="{% url 'project2' %}">Project assignment 2</a>
+                </div>
+            </div>
+
         </div>
     </main>
     <!--Main layout-->
