@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!y1fk)7(*a&1(mfwm*)b$r5zg3!&9wrj-la4bq@@6$2b^lvk1x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'autocadplatformapp.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'autocadplatform.herokuapp.com']
 
 
 # Application definition
