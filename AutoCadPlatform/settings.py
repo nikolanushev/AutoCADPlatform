@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'AutoCadPlatform.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd6dcd7fq4tgem6',
+        'HOST': 'ec2-63-34-180-86.eu-west-1.compute.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'cfadciatjdzhqt',
+        'PASSWORD': '7d58a65b8df3bbe89b2ab426bb557b7f6390486cf5a9f84b650f16dd333076d3'
     }
 }
 
