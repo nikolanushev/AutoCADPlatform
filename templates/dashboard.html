@@ -158,20 +158,20 @@
 
             {% endif %}
 
-            <div class="row mt-4" id="cards">
-                <div class="cards" style="width: 20rem;">
-                    <div class="card" style="width: 20rem;">
-                        <div class="card-header" style="background-color: white">
-                            <b>Useful Links</b>
-                            <p class="card-text" style="float: right"><small><a href="{% url 'links' %}">View All</a></small></p>
-                        </div>
-                        <div class="card-body">
-                            {% for l in links %}
-                                <a href="{{ l.string }}">{{ l.title }}</a><br>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+{#            <div class="row mt-4" id="cards">#}
+{#                <div class="cards" style="width: 20rem;">#}
+{#                    <div class="card" style="width: 20rem;">#}
+{#                        <div class="card-header" style="background-color: white">#}
+{#                            <b>Useful Links</b>#}
+{#                            <p class="card-text" style="float: right"><small><a href="{% url 'links' %}">View All</a></small></p>#}
+{#                        </div>#}
+{#                        <div class="card-body">#}
+{#                            {% for l in links %}#}
+{#                                <a href="{{ l.string }}">{{ l.title }}</a><br>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
 
                 <div class="cards" style="width: 40rem;">
                     <div class="card" style="width: 40rem;">
