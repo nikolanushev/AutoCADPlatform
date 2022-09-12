@@ -72,7 +72,7 @@ class TutorialTest(models.Model):
 
 class Link(models.Model):
     title = models.CharField(max_length=200, null=True)
-    url = models.CharField(max_length=500)
+    string = models.CharField(max_length=500)
 
     def __str__(self):
         return self.title
