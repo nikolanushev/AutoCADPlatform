@@ -1,1 +1,1 @@
-web: gunicorn AutoCADPlatform.wsgi
+web: gunicorn AutoCadPlatform.wsgi
