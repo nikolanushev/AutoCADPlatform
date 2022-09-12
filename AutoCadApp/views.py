@@ -13,14 +13,14 @@ from django.contrib import messages
 
 def dashboard(request):
     usrs = AppUser.objects.all()[5:9]
-    links = Link.objects.all()[:5]
+    lnks = Link.objects.all()[:5]
     tutorials = Tutorial.objects.all()[:3]
-    hints = Hint.objects.all()[2:5]
+    hnts = Hint.objects.all()[2:5]
     context = {
         "date": datetime.datetime.now(),
         "tutorials": tutorials,
-        'links': links,
-        'hints': hints,
+        'links': lnks,
+        'hints': hnts,
         'user': request.user,
         'users': usrs}
     return render(request, 'dashboard.html', context=context)
@@ -33,15 +33,15 @@ def lectures(request):
 
 
 def hints(request):
-    hints = Hint.objects.all()
-    context = {'hints': hints, 'user': request.user}
+    hnts = Hint.objects.all()
+    context = {'hints': hnts, 'user': request.user}
     return render(request, 'hints.html', context)
 
 
 def projects(request):
-    hints = Hint.objects.all()[4:7]
+    hnts = Hint.objects.all()[4:7]
     projs = Project.objects.all()
-    context = {'hints': hints, 'projects': projs, 'user': request.user}
+    context = {'hints': hnts, 'projects': projs, 'user': request.user}
     return render(request, 'projects.html', context=context)
 
 
@@ -78,8 +78,8 @@ def add_project(request):
 
 
 def exams(request):
-    lins = Link.objects.all()[3:6]
-    hints = Hint.objects.all()[:3]
+    lnks = Link.objects.all()[3:6]
+    hnts = Hint.objects.all()[:3]
     if request.method == 'POST':
         print(request.POST)
         questions = Test.objects.all()
@@ -99,11 +99,11 @@ def exams(request):
                 wrong += 1
         percent = score / (total * 10) * 100
         context = {'score': score, 'time': request.POST.get('timer'), 'correct': correct, 'wrong': wrong,
-                   'percent': percent, 'total': total, 'user': request.user, 'links': lins, 'hints': hints}
+                   'percent': percent, 'total': total, 'user': request.user, 'links': lnks, 'hints': hnts}
         return render(request, 'outcome.html', context)
     else:
         qs = Test.objects.all()
-        context = {'questions': qs, 'user': request.user, 'links': lins, 'hints': hints}
+        context = {'questions': qs, 'user': request.user, 'links': lnks, 'hints': hints}
         return render(request, 'exams.html', context)
 
 
@@ -121,8 +121,8 @@ def users_list(request):
 
 
 def links(request):
-    lins = Link.objects.all()
-    context = {'user': request.user, 'links': lins}
+    lnks = Link.objects.all()
+    context = {'user': request.user, 'links': lnks}
     return render(request, 'links.html', context=context)
 
 
