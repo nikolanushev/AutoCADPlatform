@@ -1,1 +1,1 @@
-web: gunicorn AutoCADPlatform.wsgi --log-file -
+web: gunicorn AutoCADPlatform.wsgi
