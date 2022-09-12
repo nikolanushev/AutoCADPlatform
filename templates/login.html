@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+    <title>Log in</title>
+</head>
+<body>
+    <!--Main Navigation-->
+    <header>
+        <!-- Navbar -->
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="#"><p class="mx-4">AutoCAD learning</p></a>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            {% block content %}
+                <div class="container py-5">
+                    <h1>Log In</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            {{ login_form.username.label }}
+                            {{ login_form.username }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ login_form.password.label }}
+                            {{ login_form.password }}
+                        </div>
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="{% url 'register' %}">Create an account</a>.</p>
+                </div>
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer page-footer font-small mt-5">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 ">
+            © 2022 Copyright:
+            <a href="{% url 'dashboard' %}"> AutoCADLearningPlatform</a>
+            Developed by Nikola Nushev
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</body>
+</html>

@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from AutoCadApp.views import dashboard, lectures, projects, exams, profile, hints, project1, project2, add_project, \
-    users_list, links, exam
+    users_list, links, exam, register_request, login_request, logout_request
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
+                  path('register', register_request, name="register"),
+                  path('login', login_request, name="login"),
+                  path('logout', logout_request, name="logout"),
                   path('', dashboard, name="dashboard"),
                   path('dashboard/', dashboard, name="dashboard"),
                   path('tutorials/', lectures, name="lectures"),

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'AutoCadPlatform.settings',
+    'bootstrap5',
     'embed_video',
     'AutoCadApp'
 ]
