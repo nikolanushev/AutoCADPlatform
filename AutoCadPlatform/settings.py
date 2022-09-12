@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!y1fk)7(*a&1(mfwm*)b$r5zg3!&9wrj-la4bq@@6$2b^lvk1x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'autocadapp.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'autocadapplication.herokuapp.com']
 
 
 # Application definition
