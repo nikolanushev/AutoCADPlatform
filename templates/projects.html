@@ -125,11 +125,25 @@
                 </p>
             </div>
 
-            <div class="row">
-                <h3>Ready to play with us? </h3>
-                <p>Let's get you in the mood. :)</p>
-                <hr>
-            </div>
+            {% if user.is_superuser %}
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 mt-2">
+                        <h3>Ready to play with us? </h3>
+                        <p>Let's get you in the mood. :)</p>
+                    </div>
+                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                        <a class="btn btn-primary" href="{% url 'add_project' %}">Add Questions</a>
+                    </div>
+                    <hr>
+                </div>
+                {% else %}
+                    <div class="row">
+                        <h3>Ready to play with us? </h3>
+                        <p>Let's get you in the mood. :)</p>
+                    </div>
+                    <hr>
+            {% endif %}
+
             <div class="row mt-5">
                 <div class="row">
                     <div class="col-md-11">
