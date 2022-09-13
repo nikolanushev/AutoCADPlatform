@@ -157,6 +157,14 @@
                 <hr class="mt-4">
             </div>
 
+            {% if user.is_superuser %}
+                <div class="row">
+                    <div style="position: center;">
+                        <a class="btn btn-primary" href="{% url 'add_project' %}">Add questions</a>
+                    </div>
+                </div>
+            {% endif %}
+
             <div class="row mt-5" style="text-align: center">
                     <h5>You think you're ready to start the first test?</h5>
                     <p>You got this.</p>

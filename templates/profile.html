@@ -121,23 +121,19 @@
     <main style="margin-top: 58px;">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-md-2">
-                    <img class="rounded-circle article-img" src="{{ MEDIA_URL }}{{ user.photo.url }}"
-                         style="width: 210px; height: 210px">
-                </div>
-                <div class="col-md-5 mx-4 mt-4">
-                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-                    <p>Email: {{ user.user.email }}</p>
-                    <p>Join Date: {{ user.user.date_joined }}</p>
-                    <p>Phone number: {{ user.phone_number }}</p>
-                </div>
-                <div class="col-md-4 mt-5" style="text-align: right">
+                <div class="col-md-5 mt-4">
+                    <p>Here you have a detailed view of your learning progress</p>
                     <p>You got this! Keep up!</p>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 48%;" aria-valuenow="48"
                              aria-valuemin="0" aria-valuemax="100">48%
                         </div>
                     </div>
+                </div>
+                <div class="col-md-7 mt-4" style="text-align: right;">
+                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Join Date: {{ user.date_joined }}</p>
                 </div>
                 <hr class="mt-4">
             </div>
