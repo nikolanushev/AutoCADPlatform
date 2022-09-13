@@ -123,12 +123,26 @@
                 </p>
             </div>
 
-            <h2>Hints and Tricks</h2>
-            <hr>
+            {% if user.is_superuser %}
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 mt-2">
+                        <h2>Hints and Tricks</h2>
+                    </div>
+                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                        <a class="btn btn-primary" href="{% url 'add_hint' %}">Add hint</a>
+                    </div>
+                    <hr>
+                </div>
+                {% else %}
+                    <div class="row">
+                        <h2>Hints and Tricks</h2>
+                    </div>
+                    <hr>
+            {% endif %}
 
             <div class="row mt-2">
                 {% for h in hints %}
-                    <div class=" mx-3 mt-5" style="width: 24rem;">
+                    <div class="mx-3 mt-5" style="width: 24rem;">
                         <div class="card-img-top">
                             {% video h.video '376 x 190' %}
                         </div>

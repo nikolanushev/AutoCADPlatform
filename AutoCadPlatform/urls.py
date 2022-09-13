@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from AutoCadApp.views import dashboard, lectures, projects, exams, profile, hints, project1, project2, add_project, \
-    users_list, links, exam, register_request, login_request, logout_request
+    users_list, links, exam, register_request, login_request, logout_request, add_hint, add_tutorial, add_link
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,6 +28,7 @@ urlpatterns = [
                   path('', dashboard, name="dashboard"),
                   path('dashboard/', dashboard, name="dashboard"),
                   path('tutorials/', lectures, name="lectures"),
+                  path('addTutorial/', add_tutorial, name="add_tutorial"),
                   path('project1/', project1, name="project1"),
                   path('project2/', project2, name="project2"),
                   path('projects/', projects, name="projects"),
@@ -36,6 +37,8 @@ urlpatterns = [
                   path('test/', exam, name="exam"),
                   path('profile/', profile, name="profile"),
                   path('hints/', hints, name="hints"),
+                  path('addHint/', add_hint, name="add_hint"),
                   path('users/', users_list, name="users_list"),
                   path('links/', links, name="links"),
+                  path('addLink/', add_link, name="add_link")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

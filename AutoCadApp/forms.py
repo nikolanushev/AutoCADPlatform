@@ -1,13 +1,31 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
-from .models import Test
+from .models import Test, Hint, Link, Tutorial
 from django.contrib.auth.models import User
 
 
 class AddQuestionForm(ModelForm):
     class Meta:
         model = Test
+        fields = "__all__"
+
+
+class AddHintForm(ModelForm):
+    class Meta:
+        model = Hint
+        fields = "__all__"
+
+
+class AddLinkForm(ModelForm):
+    class Meta:
+        model = Link
+        fields = "__all__"
+
+
+class AddTutorialForm(ModelForm):
+    class Meta:
+        model = Tutorial
         fields = "__all__"
 
 

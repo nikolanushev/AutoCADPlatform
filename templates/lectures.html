@@ -123,8 +123,23 @@
                 <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'lectures' %}">Lectures</a>
                 </p>
             </div>
-            <h2>Tutorials</h2>
-            <hr>
+
+            {% if user.is_superuser %}
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 mt-2">
+                        <h2>Lectures</h2>
+                    </div>
+                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                        <a class="btn btn-primary" href="{% url 'add_tutorial' %}">Add tutorial</a>
+                    </div>
+                    <hr>
+                </div>
+                {% else %}
+                    <div class="row">
+                        <h2>Lectures</h2>
+                    </div>
+                    <hr>
+            {% endif %}
 
             {% for t in tutorials %}
                 <div class="container mt-4">

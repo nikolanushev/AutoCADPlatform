@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from .forms import AddQuestionForm, NewUserForm
+from .forms import AddQuestionForm, NewUserForm, AddHintForm, AddLinkForm, AddTutorialForm
 from .models import Tutorial, AppUser, Hint, Project, Test, Link
 from django.contrib import messages
 # Create your views here.
@@ -63,6 +63,20 @@ def exam(request):
     return render(request, 'exam.html', context)
 
 
+def add_hint(request):
+    if request.user.is_superuser:
+        form = AddHintForm()
+        if request.method == 'POST':
+            form = AddHintForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/hints')
+        context = {'form': form}
+        return render(request, 'addHint.html', context)
+    else:
+        return redirect('dashboard')
+
+
 def add_project(request):
     if request.user.is_superuser:
         form = AddQuestionForm()
@@ -73,6 +87,34 @@ def add_project(request):
                 return redirect('/dashboard')
         context = {'form': form}
         return render(request, 'addProject.html', context)
+    else:
+        return redirect('dashboard')
+
+
+def add_tutorial(request):
+    if request.user.is_superuser:
+        form = AddTutorialForm()
+        if request.method == 'POST':
+            form = AddTutorialForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/tutorials')
+        context = {'form': form}
+        return render(request, 'addTutorial.html', context)
+    else:
+        return redirect('dashboard')
+
+
+def add_link(request):
+    if request.user.is_superuser:
+        form = AddLinkForm()
+        if request.method == 'POST':
+            form = AddLinkForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/links')
+        context = {'form': form}
+        return render(request, 'addLink.html', context)
     else:
         return redirect('dashboard')
 
