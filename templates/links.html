@@ -56,8 +56,10 @@
                 <div class="list-group list-group-flush mx-3 mt-4">
                     <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span></a>
                     <a href="{% url 'lectures' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-area fa-fw me-3"></i><span>Lectures</span></a>
-                    <a href="{% url 'projects' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Projects</span></a>
-                    <a href="{% url 'exams' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Exams</span></a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'projects' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Projects</span></a>
+                        <a href="{% url 'exams' %}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Exams</span></a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
@@ -72,11 +74,7 @@
                 </button>
                 <!-- Brand -->
                 <a class="navbar-brand" href="#"><p class="mx-4">AutoCAD learning</p></a>
-                <!-- Search form -->
-                <form class="d-none d-md-flex input-group w-auto my-auto">
-                    <input autocomplete="off" type="search" class="form-control rounded" placeholder='Search...' style="min-width: 225px"/>
-                    <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-                </form>
+
 
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     {% if user.is_authenticated %}
