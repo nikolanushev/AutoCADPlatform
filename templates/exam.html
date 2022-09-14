@@ -113,16 +113,16 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <div class="row">
+            <div class="col-md-12 col-sm-12">
                 <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'exams' %}">Exams</a> \ <a href="{% url 'exam' %}">Exam 1</a>
                 </p>
             </div>
 
             {% block content %}
                 {% load static %}
-                <div class="row">
-                    <div class="col-md-8"><h2>Exam 1</h2></div>
-                    <div class="col-md-4" style="text-align: right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-8 col-sm-8"><h2>Exam 1</h2></div>
+                    <div class="col-md-4 col-sm-4" style="text-align: right" id="displaytimer"><b>Timer: 0 seconds</b></div>
                     <hr>
                 </div>
                 <div class="container">
@@ -157,6 +157,7 @@
                     <input id='timer' type='hidden' name="timer" value="">
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-secondary" href="{% url 'exams' %}">Back</a>
                 </form>
                 {% block script %}
                     <script>

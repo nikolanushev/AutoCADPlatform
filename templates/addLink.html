@@ -113,7 +113,7 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <div class="row">
+            <div class="col-md-12 col-sm-12">
                 <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'hints' %}">Hints and Tricks</a> \ <a href="{% url 'add_link' %}">Add Link</a>
                 </p>
             </div>
@@ -123,12 +123,13 @@
 
             <div class="row mt-2">
                 {% block content %}
-                    <div class="jumbotron container row">
+                    <div class="jumbotron container col-md-12 col-sm-12">
                         <div class="col-md-6">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <button class="btn btn-primary" type="submit">Save</button>
+                                <a class="btn btn-secondary" href="{% url 'links' %}">Back</a>
                             </form>
                         </div>
                     </div>

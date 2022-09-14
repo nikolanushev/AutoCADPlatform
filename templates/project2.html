@@ -115,7 +115,7 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <div class="row">
+            <div class="col-md-12 col-sm-12">
                 <p>AutoCAD learning \ <a href="{% url 'projects' %}">Projects</a> \ <a href="{% url 'project1' %}">Project assignment 2</a>
                 </p>
             </div>
@@ -159,6 +159,7 @@
                         <input id='timer' type='hidden' name="timer" value="">
                         <br>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-secondary" href="{% url 'projects' %}">Back</a>
                     </form>
                 {% block script %}
                     <script>

@@ -113,22 +113,22 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <div class="row">
-                <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'hints' %}">Hints and Tricks</a> \ <a href="{% url 'add_tutorial' %}">Add Tutorial</a>
-                </p>
+            <div class="col-md-12 col-sm-12">
+                <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a> \ <a href="{% url 'lectures' %}">Lectures</a> \ <a href="{% url 'add_tutorial' %}">Add Tutorial</a></p>
             </div>
 
             <h2>Add a tutorial</h2>
             <hr>
 
-            <div class="row mt-2">
+            <div class="col-md-12 col-sm-12 mt-2">
                 {% block content %}
                     <div class="jumbotron container row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <button class="btn btn-primary" type="submit">Save</button>
+                                <a class="btn btn-secondary" href="{% url 'lectures' %}">Back</a>
                             </form>
                         </div>
                     </div>

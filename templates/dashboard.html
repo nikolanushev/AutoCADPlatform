@@ -139,21 +139,21 @@
 
     <main style="margin-top: 58px;">
         <div class="container pt-4">
-            <div class="row">
+            <div class="col-md-12 col-sm-12">
                 <p>AutoCAD learning \ <a href="{% url 'dashboard' %}">Dashboard</a>
                 </p>
             </div>
             {% if user.is_authenticated %}
                 <div class="row">
                     <h1>Hello, {{ user.first_name }}</h1>
-                    <div class="col-md-10"><p>Here's what's going on with your learning progress</p></div>
-                    <div class="col-md-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
+                    <div class="col-md-10 col-sm-10"><p>Here's what's going on with your learning progress</p></div>
+                    <div class="col-md-2 col-sm-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
                 </div>
                 {% else %}
                     <div class="row">
                         <h1>Welcome on board</h1>
-                        <div class="col-md-10"><p><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> if you don't have an account, to see the progress of your course.</p></div>
-                        <div class="col-md-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
+                        <div class="col-md-10 col-sm-10"><p><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> if you don't have an account, to see the progress of your course.</p></div>
+                        <div class="col-md-2 col-sm-2" style="text-align: end"><p>{{ date.ctime }}</p></div>
                     </div>
 
             {% endif %}
@@ -258,10 +258,10 @@
 
             <div class="row mt-5">
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-11 col-sm-11">
                         <h3>Latest Tutorials</h3>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 col-sm-1">
                         <a href="{% url 'lectures' %}"><small>View All</small></a>
                     </div>
                     <hr>
@@ -282,10 +282,10 @@
 
             <div class="row mt-5">
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-11 col-sm-11">
                         <h3>Some useful hints</h3>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 col-sm-1">
                         <a href="{% url 'hints' %}"><small>View All</small></a>
                     </div>
                     <hr>

@@ -145,7 +145,7 @@ def exams(request):
         return render(request, 'outcome.html', context)
     else:
         qs = Test.objects.all()
-        context = {'questions': qs, 'user': request.user, 'links': lnks, 'hints': hints}
+        context = {'questions': qs, 'user': request.user, 'links': lnks, 'hints': hnts}
         return render(request, 'exams.html', context)
 
 
