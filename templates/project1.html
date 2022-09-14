@@ -158,8 +158,12 @@
                     {% endfor %}
                     <input id='timer' type='hidden' name="timer" value="">
                     <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{% url 'projects' %}">Back</a>
+                    <div class="row" style="text-align: right">
+                        <div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a class="btn btn-secondary" href="{% url 'projects' %}">Back</a>
+                        </div>
+                    </div>
                 </form>
                 {% block script %}
                     <script>

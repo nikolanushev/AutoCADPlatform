@@ -17,12 +17,13 @@ def dashboard(request):
     tutorials = Tutorial.objects.all()[:3]
     hnts = Hint.objects.all()[2:5]
     context = {
-        "date": datetime.datetime.now(),
+        'date': datetime.datetime.now(),
         "tutorials": tutorials,
         'links': lnks,
         'hints': hnts,
         'user': request.user,
-        'users': usrs}
+        'users': usrs
+    }
     return render(request, 'dashboard.html', context=context)
 
 
@@ -47,20 +48,72 @@ def projects(request):
 
 def project1(request):
     questions = Test.objects.all()[:5]
-    context = {'questions': questions, 'user': request.user}
-    return render(request, 'project1.html', context)
+    if request.method == 'POST':
+        print(request.POST)
+        questions = Test.objects.all()[:5]
+        score = 0
+        wrong = 0
+        correct = 0
+        total = 0
+        for q in questions:
+            total += 1
+            print(request.POST.get(q.question))
+            print(q.answer)
+            print()
+            if q.answer == request.POST.get(q.question):
+                score += 10
+                correct += 1
+            else:
+                wrong += 1
+        percent = score / (total * 10) * 100
+        context = {
+            'score': score,
+            'time': request.POST.get('timer'),
+            'correct': correct,
+            'wrong': wrong,
+            'percent': percent,
+            'total': total,
+            'user': request.user
+        }
+        return render(request, 'outcome.html', context)
+    else:
+        context = {'questions': questions, 'user': request.user}
+        return render(request, 'project1.html', context)
 
 
 def project2(request):
     questions = Test.objects.all()[5:10]
-    context = {'questions': questions, 'user': request.user}
-    return render(request, 'project2.html', context)
-
-
-def exam(request):
-    questions = Test.objects.all()[4:9]
-    context = {'questions': questions, 'user': request.user}
-    return render(request, 'exam.html', context)
+    if request.method == 'POST':
+        print(request.POST)
+        questions = Test.objects.all()[5:10]
+        score = 0
+        wrong = 0
+        correct = 0
+        total = 0
+        for q in questions:
+            total += 1
+            print(request.POST.get(q.question))
+            print(q.answer)
+            print()
+            if q.answer == request.POST.get(q.question):
+                score += 10
+                correct += 1
+            else:
+                wrong += 1
+        percent = score / (total * 10) * 100
+        context = {
+            'score': score,
+            'time': request.POST.get('timer'),
+            'correct': correct,
+            'wrong': wrong,
+            'percent': percent,
+            'total': total,
+            'user': request.user
+        }
+        return render(request, 'outcome.html', context)
+    else:
+        context = {'questions': questions, 'user': request.user}
+        return render(request, 'project2.html', context)
 
 
 def add_hint(request):
@@ -122,6 +175,11 @@ def add_link(request):
 def exams(request):
     lnks = Link.objects.all()[3:6]
     hnts = Hint.objects.all()[:3]
+    context = {'user': request.user, 'links': lnks, 'hints': hnts}
+    return render(request, 'exams.html', context)
+
+
+def exam(request):
     if request.method == 'POST':
         print(request.POST)
         questions = Test.objects.all()
@@ -140,13 +198,20 @@ def exams(request):
             else:
                 wrong += 1
         percent = score / (total * 10) * 100
-        context = {'score': score, 'time': request.POST.get('timer'), 'correct': correct, 'wrong': wrong,
-                   'percent': percent, 'total': total, 'user': request.user, 'links': lnks, 'hints': hnts}
+        context = {
+            'score': score,
+            'time': request.POST.get('timer'),
+            'correct': correct,
+            'wrong': wrong,
+            'percent': percent,
+            'total': total,
+            'user': request.user
+        }
         return render(request, 'outcome.html', context)
     else:
         qs = Test.objects.all()
-        context = {'questions': qs, 'user': request.user, 'links': lnks, 'hints': hnts}
-        return render(request, 'exams.html', context)
+        context = {'questions': qs, 'user': request.user}
+        return render(request, 'exam.html', context)
 
 
 def profile(request):

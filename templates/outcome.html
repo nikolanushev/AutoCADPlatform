@@ -120,7 +120,20 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
+            <div class="card-columns" style="padding: 10px; margin: 20px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Score: {{score}}</h5>
 
+                        <p class="card-text">Percentage: {{percent}}%</p>
+                        <p class="card-text">Time Taken: {{time}} seconds</p>
+                        <p class="card-text">Correct answers: {{correct}}</p>
+                        <p class="card-text">Incorrect answers: {{wrong}}</p>
+                        <p class="card-text">Total questions: {{total}}</p>
+                        <button class="btn btn-success">Download Certificate</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <!--Main layout-->
